@@ -14,15 +14,18 @@
 
 		<input class="number_input" type="text" placeholder="Tal" />
 		<button class="submit">Indsend</button>
-		<h3></h3>
+		<h3>Venter på et forsøg...</h3>
 
 		<script>
 			let h3 = document.querySelector("h3");
+			let random = randNumb();
+			let attempts = 0;
+
 			let submitBtn = document
 				.querySelector(".submit")
 				.addEventListener("click", (e) => {
-					let random = randNumb();
 					let number = document.querySelector(".number_input").value;
+					attempts++;
 
 					if (isNaN(number)) {
 						alert("Indtast kun tal");
@@ -30,11 +33,11 @@
 						alert("Indtast kun positive tal");
 					} else {
 						if (number == random) {
-							console.log("Korrekt");
-							h3.innerHTML = `Du gættede rigtig. Tallet var ${random}`;
-						} else {
-							console.log("Forkert!");
-							h3.innerHTML = `Du gættede forkert. Tallet var ${random}`;
+							h3.innerHTML = `Du gættede rigtig. Du brugte ${attempts} forsøg.\n Refresh siden for at prøve igen`;
+						} else if (number > random) {
+							h3.innerHTML = `Du gættede forkert. Tallet er lavere`;
+						} else if (number < random) {
+							h3.innerHTML = `Du gættede forkert. Tallet er højere`;
 						}
 					}
 				});

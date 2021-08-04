@@ -1,0 +1,48 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2>Hej og velkommen</h2>
+		<p>Gæt det tal jeg tænker på?</p>
+
+		<input class="number_input" type="text" placeholder="Tal" />
+		<button class="submit">Indsend</button>
+		<h3></h3>
+
+		<script>
+			let h3 = document.querySelector("h3");
+			let submitBtn = document
+				.querySelector(".submit")
+				.addEventListener("click", (e) => {
+					let random = randNumb();
+					let number = document.querySelector(".number_input").value;
+
+					if (isNaN(number)) {
+						alert("Indtast kun tal");
+					} else if (number <= 0) {
+						alert("Indtast kun positive tal");
+					} else {
+						if (number == random) {
+							console.log("Korrekt");
+							h3.innerHTML = `Du gættede rigtig. Tallet var ${random}`;
+						} else {
+							console.log("Forkert!");
+							h3.innerHTML = `Du gættede forkert. Tallet var ${random}`;
+						}
+					}
+				});
+
+			function randNumb() {
+				let number = Math.floor(Math.random() * 21);
+				return number;
+			}
+		</script>
+	</body>
+</html>

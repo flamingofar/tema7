@@ -1,0 +1,52 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2>Hej og velkommen</h2>
+		<p>Indtast venligst varighed af din flyrejse</p>
+
+		<input class="length_input" type="text" placeholder="Varighed" />
+		<button class="submit">Indsend</button>
+		<h3 class="sum">En flyrejse på - udleder - CO2</h3>
+
+		<script>
+			let h2 = document.querySelector("h2");
+			function co2UdledtIKgVedFlyrejse(tid) {
+				let udledt = tid * 109;
+				return udledt;
+			}
+
+			let h3 = document.querySelector(".sum");
+			let submitBtn = document
+				.querySelector(".submit")
+				.addEventListener("click", (e) => {
+					let length = document.querySelector(".length_input").value;
+					if (isNaN(length)) {
+						alert("Indtast kun tal");
+					} else if (length <= 0) {
+						alert("Indtast kun positive tal");
+					} else {
+						h3.innerHTML = `En flyrejse på ${length} udleder ${co2UdledtIKgVedFlyrejse(
+							length
+						)}kg CO2`;
+						console.log(
+							`En flyrejse på ${length} udleder ${co2UdledtIKgVedFlyrejse(
+								length
+							)}kg CO2`
+						);
+					}
+				});
+
+			function areal(length, width) {
+				return length * width;
+			}
+		</script>
+	</body>
+</html>

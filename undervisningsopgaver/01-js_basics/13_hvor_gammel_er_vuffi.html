@@ -1,0 +1,52 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2>Hej og velkommen</h2>
+		<p>Lad os regne din hunds menneske alder ud</p>
+
+		<input class="dog_age" type="text" placeholder="Din hunds alder" />
+		<br />
+		<button class="submit">Udregn</button>
+		<h3 class="old">Gamle regnemodel <span></span></h3>
+		<h3 class="new">Nye regnemodel <span></span></h3>
+
+		<script>
+			let oldSpan = document.querySelector(".old span");
+			let newSpan = document.querySelector(".new span");
+
+			let submitBtn = document
+				.querySelector(".submit")
+				.addEventListener("click", (e) => {
+					let dogAge = document.querySelector(".dog_age").value;
+					let oldAge = calcAgeOld(dogAge);
+					let newAge = calcAgeNew(dogAge);
+
+					if (isNaN(dogAge)) {
+						alert("Indtast kun tal");
+					} else if (dogAge <= 0) {
+						alert("Indtast kun positive tal");
+					} else {
+						oldSpan.innerHTML = `${oldAge} år`;
+						newSpan.innerHTML = `${newAge} år`;
+					}
+				});
+
+			function calcAgeOld(age) {
+				let result = Math.round(age * 7);
+				return result;
+			}
+			function calcAgeNew(age) {
+				let result = Math.round(16 * Math.log(age) + 31);
+				return result;
+			}
+		</script>
+	</body>
+</html>

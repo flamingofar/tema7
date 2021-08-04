@@ -1,0 +1,36 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2>Hej og velkommen</h2>
+		<p>Indtast venligst længde og bredde</p>
+
+		<input class="length_input" type="text" placeholder="Længde" />
+		<br />
+		<input class="width_input" type="text" placeholder="Bredde" />
+		<button class="submit">Indsend</button>
+		<h3 class="sum">Arealet er</h3>
+
+		<script>
+			let h3 = document.querySelector(".sum");
+			let submitBtn = document
+				.querySelector(".submit")
+				.addEventListener("click", (e) => {
+					let length = document.querySelector(".length_input").value;
+					let width = document.querySelector(".width_input").value;
+					h3.innerHTML = `Arealet er ${areal(length, width)}`;
+				});
+
+			function areal(length, width) {
+				return length * width;
+			}
+		</script>
+	</body>
+</html>

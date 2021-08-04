@@ -1,0 +1,57 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h2>Hej og velkommen</h2>
+		<p>Gæt det tal jeg tænker på?</p>
+
+		<input class="own_age_input" type="text" placeholder="Din alder" />
+		<br />
+		<input class="date_age_input" type="text" placeholder="Din dates alder" />
+		<br />
+		<button class="submit">Udregn</button>
+		<h3>Går den?</h3>
+
+		<script>
+			let h3 = document.querySelector("h3");
+
+			let submitBtn = document
+				.querySelector(".submit")
+				.addEventListener("click", (e) => {
+					let ownAge = document.querySelector(".own_age_input").value;
+					let dateAge = document.querySelector(".date_age_input").value;
+					let ageCalc = halfPlusSeven(ownAge);
+
+					if (isNaN(ownAge) || isNaN(dateAge)) {
+						alert("Indtast kun tal");
+					} else if (ownAge <= 0 || dateAge <= 0) {
+						alert("Indtast kun positive tal");
+					} else {
+						if (ownAge <= 15 || dateAge <= 15) {
+							h3.innerHTML = `Føj for den lede rødbede! I skal begge være over 15`;
+						} else if (ownAge == dateAge) {
+							h3.innerHTML = `Det går så fint når i er samme alder`;
+						} else if (dateAge > ownAge) {
+							h3.innerHTML = `Du skal nok finde en der er lidt yngre`;
+						} else if (ageCalc <= dateAge) {
+							h3.innerHTML = `Den går. Du må mindst date en på ${ageCalc} år.`;
+						} else if (dateAge < ageCalc) {
+							h3.innerHTML = `Den går sku nok ikke. Du må mindst date en på ${ageCalc} år.`;
+						}
+					}
+				});
+
+			function halfPlusSeven(ownAge) {
+				let result = ownAge / 2 + 7;
+				return result;
+			}
+		</script>
+	</body>
+</html>

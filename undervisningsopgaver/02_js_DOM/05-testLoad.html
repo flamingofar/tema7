@@ -1,0 +1,106 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Titel</h1>
+		</header>
+		<main>
+			<section>
+				<h2>Undertitel</h2>
+				<div class="container">
+					<article>
+						<img src="https://placeimg.com/400/300/arch" alt="" />
+						<h3>Article 1</h3>
+						<p>
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+							culpa cupiditate dicta molestias, nihil reiciendis quam,
+							distinctio officiis dolorum laborum delectus repudiandae a
+							repellat amet eaque minima aliquid repellendus ipsum iure
+							doloremque?
+						</p>
+					</article>
+					<article>
+						<img src="https://placeimg.com/400/300/any" alt="" />
+						<h3>Article 1</h3>
+						<p>
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+							culpa cupiditate dicta molestias, nihil reiciendis quam,
+							distinctio officiis dolorum laborum delectus repudiandae a
+							repellat amet eaque minima aliquid repellendus ipsum iure
+							doloremque?
+						</p>
+					</article>
+				</div>
+			</section>
+		</main>
+		<footer>This is a footer</footer>
+		<script>
+			const overskrift = document.querySelector("h1");
+			const underOverskrift = document.querySelector("h2");
+			const articleSection = document.querySelector("section div");
+			const articleOne = document.querySelector("article:first-child");
+			const articleTwo = document.querySelector("article:last-child");
+
+			const articleOneImg = articleOne.querySelector("img");
+			const articleOneH3 = articleOne.querySelector("h3");
+			const articleOneParagraph = articleOne.querySelector("p");
+
+			const articleTwoImg = articleTwo.querySelector("img");
+			const articleTwoH3 = articleTwo.querySelector("h3");
+			const articleTwoParagraph = articleTwo.querySelector("p");
+
+			document.addEventListener("DOMContentLoaded", start);
+
+			function start() {
+				let nyOverskrift = (overskrift.textContent = "Hej");
+				let nyUnderOverskrift = (underOverskrift.textContent =
+					"Random Artikler");
+
+				let nyArticleOneH3 = (articleOneH3.textContent = "Store Madder");
+				let nyArticleTwoH3 = (articleTwoH3.textContent = "Store Kander");
+
+				let nyArticleOneParagraph = (articleOneParagraph.innerHTML =
+					"<b> Lorem ipsum dolor </b> sit amet, consectetur adipisicing elit. <em> Tenetur veniam </em> asperiores animi aperiam sed quos dignissimos deserunt consequatur illo praesentium.");
+				let nyArticleTwoParagraph = (articleTwoParagraph.innerHTML =
+					"<b> Lorem ipsum dolor </b> sit amet, consectetur adipisicing elit. <em> Tenetur veniam </em> asperiores animi aperiam sed quos dignissimos deserunt consequatur illo praesentium.");
+
+				let nyArticleOneImg = (articleOneImg.src = "./assets/mig.jpg");
+				let nyArticleOneImgAttr = (articleOneImg.alt =
+					"Billede af Malte Skjoldager på Roskilde Festival");
+
+				let nyArticleTwoImg = (articleTwoImg.src =
+					"./assets/css-is-life-71650307.png");
+				let nyArticleTwoImgAttr = (articleTwoImg.alt = "CSS Meme");
+
+				// Append Article
+				const nyArticle = document.createElement("article");
+				const articleThreeImg = document.createElement("img");
+				articleThreeImg.src = "https://placeimg.com/400/300/arch";
+
+				const articleThreeH3 = document.createElement("h3");
+				articleThreeH3.textContent = "Store Gryder";
+
+				const articleThreeParagraph = document.createElement("p");
+				articleThreeParagraph.innerHTML =
+					"<b> Lorem ipsum dolor </b> sit amet, consectetur adipisicing elit. <em> Tenetur veniam </em> asperiores animi aperiam sed quos dignissimos deserunt consequatur illo praesentium.";
+
+				articleSection.appendChild(nyArticle);
+				nyArticle.appendChild(articleThreeImg);
+				nyArticle.appendChild(articleThreeH3);
+				nyArticle.appendChild(articleThreeParagraph);
+
+				console.log(nyArticle);
+			}
+		</script>
+	</body>
+</html>

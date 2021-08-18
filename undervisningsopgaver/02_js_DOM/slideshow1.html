@@ -1,0 +1,59 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body
+		style="
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+		"
+	>
+		<article>
+			<h1>Tro På Det</h1>
+			<img src="#" alt="" />
+			<div style="display: flex">
+				<p>Billeder brugt med tilladelse af Rasmus Bregnhøi</p>
+				<button>Videre</button>
+			</div>
+		</article>
+
+		<script>
+			const img = document.querySelector("article img");
+			const btn = document.querySelector("button");
+
+			document.addEventListener("DOMContentLoaded", start);
+
+			function start() {
+				let count = 1;
+				let image;
+
+				img.src = `./assets/ovelse_billeder/img1.png`;
+
+				btn.addEventListener("click", () => {
+					if (count <= 7) {
+						count++;
+						image = `./assets/ovelse_billeder/img${count}.png`;
+						console.log(count);
+					} else {
+						count = 8;
+						image = `./assets/ovelse_billeder/img8.png`;
+					}
+					img.src = image;
+				});
+			}
+
+			function increment() {}
+		</script>
+	</body>
+</html>

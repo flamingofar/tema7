@@ -1,0 +1,261 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Century Gothic", sans serif;
+				color: #424242;
+			}
+
+			header {
+				width: 100vw;
+				background: #212121;
+				margin-bottom: 2rem;
+				padding: 1.2rem 2rem;
+			}
+
+			h1 {
+				color: white;
+			}
+			h4 {
+				margin-bottom: 0.15rem;
+			}
+
+			p {
+				font-size: 0.9rem;
+			}
+
+			main {
+				margin: 0 2rem;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+				gap: 2rem;
+			}
+
+			article {
+				position: relative;
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+			}
+
+			article:hover .img_overlay {
+				background: rgba(255, 255, 255, 0);
+			}
+			article:hover #play_btn {
+				fill: #c4311e;
+			}
+			article:hover svg {
+				transform: scale(1.1);
+			}
+
+			.img_container {
+				overflow: hidden;
+				position: relative;
+				display: grid;
+				place-items: center;
+
+				aspect-ratio: 16/9;
+				margin-bottom: 0.6rem;
+
+				box-shadow: -1px 12px 10px -8px rgba(0, 0, 0, 0.3);
+				-webkit-box-shadow: -1px 10px 18px -8px rgba(0, 0, 0, 0.3);
+				-moz-box-shadow: -1px 12px 10px -8px rgba(0, 0, 0, 0.3);
+			}
+
+			.img_overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #c4311e4f;
+				transition: background 250ms ease-out;
+			}
+			.tilbud::before {
+				position: absolute;
+				content: "OFF21";
+				top: -1.1rem;
+				right: -3.6rem;
+
+				background: black;
+				color: white;
+				font-weight: bold;
+				padding: 2rem 3rem 0.5rem 3rem;
+
+				transform: rotate(45deg);
+			}
+
+			svg {
+				position: absolute;
+				width: 5rem;
+				height: auto;
+				transition: transform 250ms ease-out;
+			}
+			#play_btn {
+				fill: white;
+				grid-area: 1/1;
+				transition: fill 250ms ease-out;
+			}
+
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				min-width: 20rem;
+
+				object-fit: cover;
+				object-position: center;
+			}
+
+			footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				padding: 5rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>OFFstream</h1>
+		</header>
+		<main>
+			<template>
+				<article>
+					<div class="img_container">
+						<div class="img_overlay"></div>
+						<img src="#" alt="" />
+
+						<svg
+							version="1.1"
+							id="Capa_1"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							x="0px"
+							y="0px"
+							viewBox="0 0 30.065 30.065"
+							xml:space="preserve"
+						>
+							<g>
+								<path
+									id="play_btn"
+									d="M26.511,12.004L6.233,0.463c-2.151-1.228-4.344,0.115-4.344,2.53v24.093
+		c0,2.046,1.332,2.979,2.57,2.979c0.583,0,1.177-0.184,1.767-0.543l20.369-12.468c1.024-0.629,1.599-1.56,1.581-2.555
+		C28.159,13.503,27.553,12.593,26.511,12.004z M25.23,14.827L4.862,27.292c-0.137,0.084-0.245,0.126-0.319,0.147
+		c-0.02-0.074-0.04-0.188-0.04-0.353V2.994c0-0.248,0.045-0.373,0.045-0.404c0.08,0.005,0.22,0.046,0.396,0.146l20.275,11.541
+		c0.25,0.143,0.324,0.267,0.348,0.24C25.554,14.551,25.469,14.678,25.23,14.827z"
+								/>
+							</g>
+						</svg>
+					</div>
+
+					<h4></h4>
+					<p></p>
+				</article>
+			</template>
+		</main>
+		<footer>
+			<div>
+				Icons made by
+				<a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+				<a href="https://www.flaticon.com/" title="Flaticon"
+					>www.flaticon.com</a
+				>
+			</div>
+		</footer>
+
+		<script>
+			window.addEventListener("DOMContentLoaded", start);
+
+			function start() {
+				const thumbnailTemplate = document.querySelector("template");
+				const container = document.querySelector("main");
+				let offStream = [
+					{
+						navn: "A Calling",
+						director: "Christian Bengtson",
+						land: "Danmark",
+						varighed: "20 min",
+						year: "2019",
+						billede:
+							"https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/W6dOqabNhHKBPXxxKKEZRA84-720.jpg",
+						tilbud: false,
+					},
+					{
+						navn: "A Hole In My Heart",
+						director: "Mees Peijnenburg",
+						land: "Holland",
+						varighed: "9 min",
+						year: "2015",
+						billede:
+							"https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/Q8K1pZrOs03Q0IrDkBwGVu5r-720.jpg",
+						tilbud: false,
+					},
+					{
+						navn: "A Place In The Sun - 110 yeas after the genocide",
+						director: "Christian Zipfel",
+						land: "Tyskland",
+						varighed: "20 min",
+						year: "2018",
+						billede:
+							"https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/hUd4SdGQ8I23ovxWnGtBz4Ck-720.jpg",
+						tilbud: false,
+					},
+					{
+						navn: "A Summer Place",
+						director: "Alexandra Matheou",
+						land: "Grækenland",
+						varighed: "21 min",
+						year: "2021",
+						billede:
+							"https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/9ZXEAY471UE4gFwHMXeRb17p.jpg",
+						tilbud: true,
+					},
+					{
+						navn: "A Tower of Two",
+						director: "Jacob Krzysztof Glogowski",
+						land: "Danmark",
+						varighed: "21 min",
+						year: "2019",
+						billede:
+							"https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/Zdt2ODEqSVOkNe8nUaSSu8kd.jpg",
+						tilbud: false,
+					},
+				];
+
+				offStream.forEach((film) => {
+					let klon = thumbnailTemplate.cloneNode(true).content;
+					klon.querySelector("img").src = film.billede;
+					klon.querySelector("h4").textContent = film.navn;
+					klon.querySelector(
+						"p"
+					).textContent = `${film.director} | ${film.land} | ${film.varighed} | ${film.year}`;
+
+					if (film.tilbud == true) {
+						klon.querySelector(".img_overlay").classList.add("tilbud");
+						console.log("Hej");
+					}
+
+					container.appendChild(klon);
+				});
+			}
+		</script>
+	</body>
+</html>

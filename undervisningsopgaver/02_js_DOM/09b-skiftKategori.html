@@ -1,0 +1,115 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Titel</h1>
+		</header>
+		<main>
+			<section>
+				<h2>Undertitel</h2>
+				<div class="container">
+					<article>
+						<img src="https://placeimg.com/400/300/arch" alt="" />
+						<h3>Article 1</h3>
+						<p>
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+							culpa cupiditate dicta molestias, nihil reiciendis quam,
+							distinctio officiis dolorum laborum delectus repudiandae a
+							repellat amet eaque minima aliquid repellendus ipsum iure
+							doloremque?
+						</p>
+					</article>
+					<article>
+						<img src="https://placeimg.com/400/300/any" alt="" />
+						<h3>Article 1</h3>
+						<p>
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+							culpa cupiditate dicta molestias, nihil reiciendis quam,
+							distinctio officiis dolorum laborum delectus repudiandae a
+							repellat amet eaque minima aliquid repellendus ipsum iure
+							doloremque?
+						</p>
+					</article>
+				</div>
+			</section>
+		</main>
+		<footer>This is a footer</footer>
+		<script>
+			const overskrift = document.querySelector("h1");
+			const underOverskrift = document.querySelector("h2");
+			const articleSection = document.querySelector("section div");
+			const articleOne = document.querySelector("article:first-child");
+			const articleTwo = document.querySelector("article:last-child");
+
+			const articleOneImg = articleOne.querySelector("img");
+			const articleOneH3 = articleOne.querySelector("h3");
+			const articleOneParagraph = articleOne.querySelector("p");
+
+			const articleTwoImg = articleTwo.querySelector("img");
+			const articleTwoH3 = articleTwo.querySelector("h3");
+			const articleTwoParagraph = articleTwo.querySelector("p");
+
+			document.addEventListener("DOMContentLoaded", start);
+
+			function start() {
+				const categoriesArr = ["animals", "arch", "people", "nature", "tech"];
+				overskrift.textContent = "Hej";
+				underOverskrift.textContent = "Random Artikler";
+
+				articleOneH3.textContent = "Store Madder";
+				articleTwoH3.textContent = "Store Kander";
+
+				articleOneParagraph.innerHTML =
+					"<b> Lorem ipsum dolor </b> sit amet, consectetur adipisicing elit. <em> Tenetur veniam </em> asperiores animi aperiam sed quos dignissimos deserunt consequatur illo praesentium.";
+
+				articleTwoParagraph.innerHTML =
+					"<b> Lorem ipsum dolor </b> sit amet, consectetur adipisicing elit. <em> Tenetur veniam </em> asperiores animi aperiam sed quos dignissimos deserunt consequatur illo praesentium.";
+
+				articleOneImg.src = "./assets/mig.jpg";
+				articleOneImg.addEventListener("click", () => {
+					articleOneImg.src =
+						"https://placeimg.com/958/959/arch?t=" + randomNumber();
+				});
+
+				articleTwoImg.src = `https://placeimg.com/958/959/${
+					categoriesArr[randomNumber()]
+				}?t=`;
+				articleTwoImg.addEventListener("click", () => {
+					articleTwoImg.src = `https://placeimg.com/958/959/${
+						categoriesArr[randomNumber() - 1]
+					}?t=`;
+				});
+
+				// Append Article
+				const nyArticle = document.createElement("article");
+				const articleThreeImg = document.createElement("img");
+				articleThreeImg.src = "https://placeimg.com/958/959/arch";
+
+				const articleThreeH3 = document.createElement("h3");
+				articleThreeH3.textContent = "Store Gryder";
+
+				const articleThreeParagraph = document.createElement("p");
+				articleThreeParagraph.innerHTML =
+					"<b> Lorem ipsum dolor </b> sit amet, consectetur adipisicing elit. <em> Tenetur veniam </em> asperiores animi aperiam sed quos dignissimos deserunt consequatur illo praesentium.";
+
+				articleSection.appendChild(nyArticle);
+				nyArticle.appendChild(articleThreeImg);
+				nyArticle.appendChild(articleThreeH3);
+				nyArticle.appendChild(articleThreeParagraph);
+			}
+			function randomNumber() {
+				return Math.floor(Math.random() * 5) + 1;
+			}
+		</script>
+	</body>
+</html>

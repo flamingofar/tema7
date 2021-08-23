@@ -44,13 +44,26 @@ section {
 	display: grid;
 	gap: 1rem;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	transition: background 250ms ease-in-out;
 }
 
 article {
-	border: 2px solid var(--border-grey);
 }
 
 article p,
 h3 {
 	padding: 0 1rem 0.5rem 1rem;
+}
+
+article {
+	box-shadow: none;
+	transition: all 250ms ease-in-out;
+
+	border: 2px solid var(--border-grey);
+}
+
+article.box_shadow {
+	box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.69);
+	-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.69);
+	-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.69);
 }

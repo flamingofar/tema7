@@ -1,0 +1,67 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body
+		style="
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+		"
+	>
+		<article>
+			<h1>Tro På Det</h1>
+			<img src="#" alt="" />
+			<div style="display: flex">
+				<p>Billeder brugt med tilladelse af Rasmus Bregnhøi</p>
+				<button>Videre</button>
+			</div>
+		</article>
+
+		<script>
+			const img = document.querySelector("article img");
+			const btn = document.querySelector("button");
+
+			let count = 1;
+			let image;
+			document.addEventListener("DOMContentLoaded", start);
+
+			function start() {
+				img.src = `./assets/ovelse_billeder/img1.png`;
+
+				btn.addEventListener("click", clickHandler);
+			}
+
+			function clickHandler() {
+				if (count < 8) {
+					count++;
+					image = `./assets/ovelse_billeder/img${count}.png`;
+					if (count == 8) {
+						btn.textContent = "Forfra";
+						btn.removeEventListener("click", clickHandler);
+						btn.addEventListener("click", resetHandler);
+					}
+				}
+				img.src = image;
+			}
+
+			function resetHandler() {
+				count = 1;
+				img.src = `./assets/ovelse_billeder/img1.png`;
+				btn.textContent = "Videre";
+				btn.removeEventListener("click", resetHandler);
+				btn.addEventListener("click", clickHandler);
+			}
+		</script>
+	</body>
+</html>

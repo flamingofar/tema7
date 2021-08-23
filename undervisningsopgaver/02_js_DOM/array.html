@@ -1,0 +1,50 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link rel="stylesheet" href="style.css" />
+
+		<style>
+			body {
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Artists i like</h1>
+		<ul class="display"></ul>
+		<script>
+			const musicArr = [
+				"Hades Town",
+				"Dear Evan Hansen",
+				"Bo Burnham",
+				"Collabro",
+				"Mumford & Sons",
+				"Suspekt",
+				"Fat Freddies Drop",
+				"Dadi Freyer",
+				"Billie Eilish",
+				"TOOL",
+			];
+
+			const list = document.querySelector(".display");
+
+			musicArr.forEach((artist) => {
+				let listItem = document.createElement("li");
+				listItem.textContent = `${artist}`;
+
+				list.appendChild(listItem);
+			});
+		</script>
+	</body>
+</html>

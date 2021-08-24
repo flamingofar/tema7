@@ -1,0 +1,26 @@
+[
+	{
+		"mærke": "Volvo",
+		"logo": "https://www.carlogos.org/logo/Volvo-logo-2014-640x550.jpg",
+		"model": "Amazon",
+		"motor": "Benzin",
+		"km": "500000",
+		"udstyr": ["blinklys", "læderrat"]
+	},
+	{
+		"mærke": "VW",
+		"logo": "https://www.carlogos.org/logo/Volkswagen-logo-2019-640x500.jpg",
+		"model": "Polo",
+		"motor": "Diesel",
+		"km": "40500",
+		"udstyr": ["sædevarme", "gps"]
+	},
+	{
+		"mærke": "Tesla",
+		"logo": "https://www.carlogos.org/car-logos/tesla-logo-2200x2800-show.png",
+		"model": "S",
+		"motor": "EL",
+		"km": "1000",
+		"udstyr": ["gps", "aircon", "soltag"]
+	}
+]

@@ -36,7 +36,7 @@
 			article {
 				width: 100%;
 				min-height: 10rem;
-				padding: 2rem;
+				padding: 0.5rem;
 
 				background: white;
 				border-radius: 4px;
@@ -76,8 +76,8 @@
 					<h3></h3>
 					<img src="#" alt="" />
 					<p class="email"></p>
-					<p class="km"></p>
-					<ul class="udstyr"></ul>
+					<p class="year"></p>
+					<p class="createdAt"></p>
 				</article>
 			</template>
 		</main>
@@ -115,14 +115,25 @@
 					klon.querySelector("h2").textContent = el.first_name;
 					klon.querySelector("h3").textContent = el.last_name;
 					klon.querySelector("img").src = `faces/img${count}.jpg`;
-					klon.querySelector(".email").textContent = el.email;
-					klon.querySelector(".km").textContent = el.km;
+					klon.querySelector(".email").textContent = `Email: ${el.email}`;
+					klon.querySelector(".year").textContent = `Årgang: ${el.year}`;
+					klon.querySelector(
+						".createdAt"
+					).textContent = `Created: ${truncateString(el.createdAt, 10)}`;
 
 					//Appender alle elementerne
 					container.appendChild(klon);
 				});
 
 				console.log(json);
+			}
+
+			function truncateString(string, limit) {
+				if (string.length > limit) {
+					return string.substring(0, limit);
+				} else {
+					return string;
+				}
 			}
 
 			fetchDBData();

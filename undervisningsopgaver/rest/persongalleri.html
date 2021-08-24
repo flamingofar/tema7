@@ -1,0 +1,131 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<style>
+			body {
+				background: rgb(250, 250, 250);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				overflow: hidden;
+			}
+			main {
+				display: grid;
+
+				width: 100vw;
+				height: auto;
+				max-width: 1200px;
+				margin: auto;
+			}
+			#liste {
+				width: 100%;
+				display: grid;
+
+				grid-area: 1/1;
+				grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+				gap: 2rem;
+			}
+			article {
+				width: 100%;
+				min-height: 10rem;
+				padding: 2rem;
+
+				background: white;
+				border-radius: 4px;
+
+				box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+				-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+				-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+
+				transition: box-shadow 200ms ease-out;
+			}
+
+			article:hover {
+				box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.3);
+				-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.3);
+				-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.3);
+			}
+			ul {
+				display: flex;
+				justify-content: space-evenly;
+				align-items: flex-start;
+				flex-direction: column;
+			}
+
+			img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div id="liste"></div>
+			<template>
+				<article>
+					<h2></h2>
+					<h3></h3>
+					<img src="#" alt="" />
+					<p class="email"></p>
+					<p class="km"></p>
+					<ul class="udstyr"></ul>
+				</article>
+			</template>
+		</main>
+		<script>
+			const db = "https://persongalleri-0638.restdb.io/rest/person?";
+			const APIKey = "612486a143cedb6d1f97e890";
+			const images = "images.json";
+
+			var settings = {
+				async: true,
+				crossDomain: true,
+				url: db,
+				method: "GET",
+				headers: {
+					"content-type": "application/json",
+					"x-apikey": APIKey,
+					"cache-control": "no-cache",
+				},
+			};
+
+			async function fetchDBData() {
+				const res = await fetch(db, settings);
+				const json = await res.json();
+				vis(json);
+			}
+
+			function vis(json) {
+				const dyreTemplate = document.querySelector("template");
+				const container = document.querySelector("#liste");
+				let count = 0;
+
+				json.forEach((el) => {
+					count++;
+					let klon = dyreTemplate.cloneNode(true).content;
+					klon.querySelector("h2").textContent = el.first_name;
+					klon.querySelector("h3").textContent = el.last_name;
+					klon.querySelector("img").src = `faces/img${count}.jpg`;
+					klon.querySelector(".email").textContent = el.email;
+					klon.querySelector(".km").textContent = el.km;
+
+					//Appender alle elementerne
+					container.appendChild(klon);
+				});
+
+				console.log(json);
+			}
+
+			fetchDBData();
+		</script>
+	</body>
+</html>

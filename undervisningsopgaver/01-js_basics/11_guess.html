@@ -18,7 +18,7 @@
 
 		<script>
 			let h3 = document.querySelector("h3");
-			let random = randNumb();
+			let randNr = randNumb();
 			let attempts = 0;
 
 			let submitBtn = document
@@ -32,18 +32,18 @@
 					} else if (number <= 0) {
 						alert("Indtast kun positive tal");
 					} else {
-						if (number == random) {
-							h3.innerHTML = `Du gættede rigtig. Du brugte ${attempts} forsøg.\n Refresh siden for at prøve igen`;
-						} else if (number > random) {
-							h3.innerHTML = `Du gættede forkert. Tallet er lavere`;
-						} else if (number < random) {
-							h3.innerHTML = `Du gættede forkert. Tallet er højere`;
+						if (number == randNr) {
+							h3.textContent = `Du gættede rigtig. Du brugte ${attempts} forsøg.\n Refresh siden for at prøve igen`;
+						} else if (number > randNr) {
+							h3.textContent = `Du gættede forkert. Tallet er lavere`;
+						} else if (number < randNr) {
+							h3.textContent = `Du gættede forkert. Tallet er højere`;
 						}
 					}
 				});
 
 			function randNumb() {
-				let number = Math.floor(Math.random() * 21);
+				let number = Math.floor(Math.random() * 20);
 				return number;
 			}
 		</script>

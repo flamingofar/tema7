@@ -6,7 +6,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Person Gallery</title>
 
 		<style>
 			body {
@@ -16,6 +16,8 @@
 				align-items: center;
 				height: 100vh;
 				overflow-x: hidden;
+
+				font-family: "Century Gothic", sans-serif;
 			}
 			main {
 				display: grid;
@@ -68,6 +70,25 @@
 
 				object-fit: cover;
 			}
+
+			h2,
+			h3 {
+				display: inline-block;
+			}
+
+			.lname {
+				font-weight: lighter;
+				padding-bottom: 0.3rem;
+				border-bottom: solid 1px black;
+			}
+
+			.name {
+				padding-left: 1.5rem;
+			}
+
+			.details {
+				padding-inline: 1.5rem;
+			}
 		</style>
 	</head>
 	<body>
@@ -75,12 +96,16 @@
 			<div id="liste"></div>
 			<template>
 				<article>
-					<h2></h2>
-					<h3></h3>
+					<div class="name">
+						<h2 class="fname"></h2>
+						<h2 class="lname"></h2>
+					</div>
 					<img src="#" alt="" />
-					<p class="email"></p>
-					<p class="year"></p>
-					<p class="createdAt"></p>
+					<div class="details">
+						<p class="email"></p>
+						<p class="year"></p>
+						<p class="createdAt"></p>
+					</div>
 				</article>
 			</template>
 		</main>
@@ -115,8 +140,8 @@
 				json.forEach((el) => {
 					count++;
 					let klon = dyreTemplate.cloneNode(true).content;
-					klon.querySelector("h2").textContent = el.first_name;
-					klon.querySelector("h3").textContent = el.last_name;
+					klon.querySelector(".lname").textContent = el.first_name;
+					klon.querySelector(".fname").textContent = el.last_name;
 					klon.querySelector("img").src = `faces/img${count}.jpg`;
 					klon.querySelector(".email").textContent = `Email: ${el.email}`;
 					klon.querySelector(".year").textContent = `Årgang: ${el.year}`;

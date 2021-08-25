@@ -9,6 +9,7 @@
 		<title>Document</title>
 
 		<link rel="stylesheet" href="style.css" />
+		<link rel="shortcut icon" href="data:image/x-icon," type="image/x-icon" />
 	</head>
 	<body
 		style="
@@ -31,37 +32,64 @@
 		<script>
 			const img = document.querySelector("article img");
 			const btn = document.querySelector("button");
+			const imgArr = [
+				"assets/ovelse_billeder/img1.png",
+				"assets/ovelse_billeder/img2.png",
+				"assets/ovelse_billeder/img3.png",
+				"assets/ovelse_billeder/img4.png",
+				"assets/ovelse_billeder/img5.png",
+				"assets/ovelse_billeder/img6.png",
+				"assets/ovelse_billeder/img7.png",
+				"assets/ovelse_billeder/img8.png",
+			];
 
-			let count = 1;
+			console.log(imgArr[0]);
+
+			let count = 0;
 			let image;
 			document.addEventListener("DOMContentLoaded", start);
 
 			function start() {
-				img.src = `./assets/ovelse_billeder/img1.png`;
+				// img.src = `./assets/ovelse_billeder/img1.png`;
+				img.src = imgArr[count];
 
 				btn.addEventListener("click", clickHandler);
 			}
 
 			function clickHandler() {
-				if (count < 8) {
+				if (count == imgArr.length - 1) {
+					count = 0;
+					img.src = imgArr[count];
+					btn.textContent = "Videre";
+				} else {
 					count++;
-					image = `./assets/ovelse_billeder/img${count}.png`;
-					if (count == 8) {
+					img.src = imgArr[count];
+					if (count == imgArr.length - 1) {
 						btn.textContent = "Forfra";
-						btn.removeEventListener("click", clickHandler);
-						btn.addEventListener("click", resetHandler);
 					}
 				}
-				img.src = image;
 			}
 
-			function resetHandler() {
-				count = 1;
-				img.src = `./assets/ovelse_billeder/img1.png`;
-				btn.textContent = "Videre";
-				btn.removeEventListener("click", resetHandler);
-				btn.addEventListener("click", clickHandler);
-			}
+			// function clickHandler() {
+			// 	if (count < 8) {
+			// 		count++;
+			// 		image = `./assets/ovelse_billeder/img${count}.png`;
+			// 		if (count == 8) {
+			// 			btn.textContent = "Forfra";
+			// 			btn.removeEventListener("click", clickHandler);
+			// 			btn.addEventListener("click", resetHandler);
+			// 		}
+			// 	}
+			// 	img.src = image;
+			// }
+
+			// function resetHandler() {
+			// 	count = 1;
+			// 	img.src = `./assets/ovelse_billeder/img1.png`;
+			// 	btn.textContent = "Videre";
+			// 	btn.removeEventListener("click", resetHandler);
+			// 	btn.addEventListener("click", clickHandler);
+			// }
 		</script>
 	</body>
 </html>

@@ -11,13 +11,29 @@
 		<link rel="stylesheet" href="bistro_babushka.css" />
 	</head>
 	<body>
-		<div id="liste"></div>
+		<header>
+			<div class="logo"></div>
+			<h1>Bistro Babushka</h1>
+		</header>
+		<main>
+			<div class="buttons_container">
+				<h2>Alle</h2>
+				<div class="buttons">
+					<button data-retter="alle" class="active">Alle</button>
+					<button data-retter="forretter">Forretter</button>
+					<button data-retter="hovedretter">Hovedretter</button>
+					<button data-retter="desserter">Desserter</button>
+				</div>
+			</div>
+
+			<div id="liste"></div>
+		</main>
 		<template>
 			<article>
+				<img src="#" alt="" />
 				<div class="name_container">
 					<h2 class="name"></h2>
 				</div>
-				<img src="#" alt="" />
 				<div class="details">
 					<p class="kort"></p>
 					<p class="country"></p>

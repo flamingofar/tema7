@@ -2,7 +2,7 @@
 
 const db = "https://babushka-dd8a.restdb.io/rest/menu";
 const APIKey = "600ec2fb1346a1524ff12de4";
-const images = "images.json";
+const images = "./medium/";
 
 var settings = {
 	async: true,
@@ -71,7 +71,7 @@ function vis(json) {
 	const container = document.querySelector("#liste");
 	let count = 0;
 	container.textContent = "";
-
+	console.log(json);
 	json.forEach((el) => {
 		count++;
 
@@ -79,7 +79,7 @@ function vis(json) {
 			let klon = retterTemplate.cloneNode(true).content;
 			klon.querySelector(".name").textContent = el.navn;
 			klon.querySelector(".kort").textContent = el.kortbeskrivelse;
-			klon.querySelector("img").src = `faces/img${count}.jpg`;
+			klon.querySelector("img").src = `${images}${el.billednavn}-md.jpg`;
 			klon.querySelector(
 				".country"
 			).textContent = `Land: ${el.oprindelsesregion}`;

@@ -1,0 +1,221 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>test</title>
+
+		<link rel="shortcut icon" href="data:image/x-icon," type="image/x-icon" />
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			#liste {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				grid-gap: 1em;
+				margin: 2em;
+			}
+
+			.person {
+				padding: 1em;
+				border: 1px solid;
+				border-radius: 1em;
+			}
+
+			.buttons {
+				/* border: none;
+				background-color: rgb(197, 223, 245);
+				padding: 0.25rem 1rem; */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				column-gap: 1rem;
+			}
+
+			.valgt {
+				border-bottom: rgb(70, 104, 148) solid 4px;
+			}
+
+			.box {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			input[type="checkbox"] {
+				position: relative;
+				overflow: hidden;
+				appearance: none;
+
+				cursor: pointer;
+			}
+
+			input[type="checkbox"].check {
+				background: rgb(187, 187, 187);
+				border-radius: 2rem;
+				width: 4rem;
+				height: 2rem;
+				position: relative;
+
+				transition: background 250ms;
+			}
+			input[type="checkbox"].check:checked {
+				background: rgb(69, 214, 69);
+			}
+
+			input[type="checkbox"].check::before {
+				content: "";
+				position: absolute;
+				width: 1.7rem;
+				height: 1.7rem;
+				border-radius: 50%;
+				transform-origin: center;
+				background: rgb(233, 233, 233);
+				top: 0.175rem;
+				left: 0.25rem;
+
+				transition: transform 250ms;
+			}
+			input[type="checkbox"].check:checked::before {
+				transform: translateX(1.8rem);
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Alle</h1>
+		<div class="buttons">
+			<div class="box">
+				<h2>Troende:</h2>
+				<input class="check check_1" data-troende="troende" type="checkbox" />
+			</div>
+			<div class="box">
+				<h2>Ikke Troende:</h2>
+				<input
+					class="check check_2"
+					data-troende="ikkeTroende"
+					type="checkbox"
+				/>
+			</div>
+			<div class="box">
+				<h2>Tvivler:</h2>
+				<input class="check check_3" data-troende="tvivler" type="checkbox" />
+			</div>
+
+			<!-- <button data-troende="ja">Troende</button>
+			<button data-troende="nej">Ikke Troende</button>
+			<button data-troende="tvivler">Tvivler</button> -->
+		</div>
+
+		<section id="liste"></section>
+
+		<template>
+			<article class="person">
+				<h2 class="navn"></h2>
+				<p class="køn"></p>
+				<img src="" alt="" class="profil-billede" />
+			</article>
+		</template>
+
+		<script>
+			const header = document.querySelector("header h1");
+			const medieurl = "./faces/";
+			const myHeaders = {
+				"x-apikey": "600fe9211346a1524ff12e31",
+			};
+			document.addEventListener("DOMContentLoaded", start);
+
+			const h1 = document.querySelector("h1");
+			const btns = document.querySelectorAll("button");
+			const btn1 = document.querySelector(".check_1");
+			const btn2 = document.querySelector(".check_2");
+			const btn3 = document.querySelector(".check_3");
+
+			const checkBox = document.querySelectorAll('input[type="checkbox"]');
+
+			btns.forEach((btn) => {
+				btn.addEventListener("click", filtrerPersoner);
+			});
+
+			let personer;
+			let count = 0;
+
+			let troende = true;
+			let ikkeTroende = false;
+			let tvivler = false;
+
+			let troendeFilter;
+			let ikkeTroendeFilter;
+			let tvivlerFilter;
+
+			btn1.checked = troende;
+			btn2.checked = ikkeTroende;
+			btn3.checked = tvivler;
+
+			// første funktion der kaldes efter DOM er loaded
+			function start() {
+				loadJSON();
+			}
+
+			async function loadJSON() {
+				const JSONData = await fetch(
+					"https://persongalleri-5d3e.restdb.io/rest/persongalleri",
+					{
+						headers: myHeaders,
+					}
+				);
+				personer = await JSONData.json();
+				visPersoner();
+			}
+
+			//funktion der viser personer i liste view
+			function visPersoner() {
+				checkBox.forEach((el) => {
+					el.addEventListener("click", checkBoxHandler);
+				});
+				const dest = document.querySelector("#liste"); // container til articles med en person
+				const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
+
+				dest.textContent = "";
+
+				troende = btn1.checked;
+				ikkeTroende = btn2.checked;
+				tvivler = btn3.checked;
+
+				personer.forEach((person) => {
+					count++;
+					troendeFilter = person.troende;
+					ikkeTroendeFilter = person.troende;
+					tvivlerFilter = person.troende;
+					// loop igennem json
+
+					if (
+						(troende == true && troendeFilter == "ja") ||
+						(ikkeTroende == true && ikkeTroendeFilter == "nej") ||
+						(tvivler == true && tvivlerFilter == "tvivler")
+					) {
+						const klon = skabelon.cloneNode(true);
+						klon.querySelector(".navn").textContent =
+							person.fornavn + " " + person.efternavn;
+						klon.querySelector(".profil-billede").src =
+							medieurl + `img${count}.jpg`;
+						dest.appendChild(klon);
+					}
+				});
+				count = 0;
+			}
+
+			function checkBoxHandler() {
+				this.checked ? (this.checked = true) : (this.checked = false);
+				visPersoner();
+			}
+		</script>
+	</body>
+</html>

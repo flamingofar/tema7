@@ -1,0 +1,90 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>test</title>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			#liste {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				grid-gap: 1em;
+				margin: 2em;
+			}
+
+			.person {
+				padding: 1em;
+				border: 1px solid;
+				border-radius: 1em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="liste"></section>
+
+		<template>
+			<article class="person">
+				<h2 class="navn"></h2>
+				<p class="køn"></p>
+				<img src="" alt="" class="profil-billede" />
+			</article>
+		</template>
+
+		<script>
+			const header = document.querySelector("header h1");
+			const medieurl = "https://persongalleri-5d3e.restdb.io/media/";
+			const myHeaders = {
+				"x-apikey": "600fe9211346a1524ff12e31",
+			};
+			document.addEventListener("DOMContentLoaded", start);
+			let personer;
+			let filter = "ja";
+
+			// første funktion der kaldes efter DOM er loaded
+			function start() {
+				loadJSON();
+			}
+
+			async function loadJSON() {
+				const JSONData = await fetch(
+					"https://persongalleri-5d3e.restdb.io/rest/persongalleri",
+					{
+						headers: myHeaders,
+					}
+				);
+				personer = await JSONData.json();
+				console.log("Personer", personer);
+				visPersoner();
+			}
+
+			//funktion der viser personer i liste view
+			function visPersoner() {
+				const dest = document.querySelector("#liste"); // container til articles med en person
+				const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
+
+				personer.forEach((person) => {
+					// loop igennem json (personer)
+					if (person.troende == filter) {
+						const klon = skabelon.cloneNode(true);
+						klon.querySelector(".navn").textContent =
+							person.fornavn + " " + person.efternavn;
+						klon.querySelector(".profil-billede").src =
+							medieurl + person.billede;
+						dest.appendChild(klon);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

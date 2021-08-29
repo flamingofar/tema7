@@ -1,0 +1,121 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+
+				height: 100vh;
+				width: 100vw;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+
+			img {
+				width: 100%;
+				height: auto;
+				margin: 0 auto;
+				display: block;
+
+				object-fit: cover;
+				object-position: top center;
+
+				aspect-ratio: 16/9;
+			}
+
+			article {
+				width: 50vw;
+
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				align-items: center;
+
+				box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+				-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+				-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+			}
+
+			button {
+				margin: 1rem;
+				border: none;
+				background-color: rgb(197, 223, 245);
+				padding: 0.25rem 1rem;
+
+				box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+				-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+				-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+
+				border-radius: 5px;
+
+				cursor: pointer;
+			}
+			h2 {
+			}
+
+			p {
+			}
+		</style>
+	</head>
+	<body>
+		<article class="person">
+			<h2 class="navn"></h2>
+			<p class="hobby"></p>
+			<img src="#" alt="Person" class="profil-billede" />
+		</article>
+		<button>Tilbage</button>
+
+		<script>
+			const URlParams = new URLSearchParams(window.location.search);
+			const id = URlParams.get("id");
+			console.log("ID:" + id);
+
+			const header = document.querySelector("header h1");
+			const medieurl = "./faces/";
+			const myHeaders = {
+				"x-apikey": "600fe9211346a1524ff12e31",
+			};
+
+			let person;
+
+			window.addEventListener("DOMContentLoaded", loadJSON);
+
+			async function loadJSON() {
+				const JSONData = await fetch(
+					`https://persongalleri-5d3e.restdb.io/rest/persongalleri/${id}`,
+					{
+						headers: myHeaders,
+					}
+				);
+				person = await JSONData.json();
+
+				console.log("Person", person);
+				visPerson();
+			}
+
+			function visPerson() {
+				document.querySelector(
+					".navn"
+				).textContent = `${person.fornavn} ${person.efternavn}`;
+				document.querySelector(".hobby").textContent = `Hobby: ${person.hobby}`;
+				let billede = (document.querySelector(
+					"img"
+				).src = `${medieurl}${person.billede}`);
+				document.querySelector("button").addEventListener("click", () => {
+					history.back();
+				});
+			}
+		</script>
+	</body>
+</html>

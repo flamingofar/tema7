@@ -5,6 +5,56 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+/* SKELETON LOADING STYLE*/
+
+.grid {
+	width: 80%;
+	display: grid;
+	padding: 0 0 2rem 0;
+	margin: 0 auto;
+
+	grid-area: 1/1;
+	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+	gap: 2rem;
+	place-self: center;
+}
+
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+	opacity: 0.7;
+
+	border: 0;
+}
+
+.skeleton-text {
+	width: 100%;
+	height: 0.5rem;
+	margin: 0.25rem;
+	border-radius: 0.13rem;
+}
+.skeleton-text:last-child {
+	margin-bottom: 0;
+	width: 75%;
+}
+
+.card {
+	height: 20rem;
+}
+
+.skeleton-ret {
+	width: 18rem;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background: hsl(200, 20%, 70%);
+	}
+	100% {
+		background: hsl(200, 20%, 95%);
+	}
+}
+
 body {
 	background: rgb(250, 250, 250);
 
@@ -70,12 +120,12 @@ button.active {
 	gap: 2rem;
 	place-self: center;
 }
+
 article {
 	width: 100%;
 	min-height: 10rem;
 	padding: 0.5rem;
 
-	background: white;
 	border-radius: 4px;
 
 	box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
@@ -112,6 +162,7 @@ img {
 	aspect-ratio: 16/9;
 
 	object-fit: cover;
+	object-position: center;
 }
 
 h2,
@@ -129,6 +180,9 @@ h3 {
 	padding-left: 1.5rem;
 }
 
-.details {
+.details,
+.name_container {
 	padding-inline: 1.5rem;
+	width: 75%;
+	margin: 0 auto;
 }

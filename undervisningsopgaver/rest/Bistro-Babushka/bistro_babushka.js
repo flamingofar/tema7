@@ -23,6 +23,12 @@ const btns = document.querySelectorAll("button");
 let retter;
 let filter = "alle";
 
+const liste = document.querySelector("#liste");
+let skeleton = document.querySelector(".skeleton-ret");
+for (i = 0; i < 10; i++) {
+	liste.append(skeleton.cloneNode(true));
+}
+
 window.addEventListener("DOMContentLoaded", start);
 
 function start() {
@@ -56,6 +62,9 @@ async function loadJSON() {
 function vis(json) {
 	const retterTemplate = document.querySelector("template");
 	const container = document.querySelector("#liste");
+	// Skeleton
+	const skeletonGrid = document.querySelector(".grid");
+	skeletonGrid.textContent = "";
 	let count = 0;
 	container.textContent = "";
 	json.forEach((el) => {
@@ -72,12 +81,7 @@ function vis(json) {
 			klon
 				.querySelector(".ret")
 				.addEventListener("click", () => visDetaljer(el));
-			// klon.querySelector(".createdAt").textContent = `Created: ${truncateString(
-			// 	el.createdAt,
-			// 	10
-			// )}`;
 
-			//Appender alle elementerne
 			container.appendChild(klon);
 		}
 	});
@@ -86,11 +90,3 @@ function vis(json) {
 function visDetaljer(hvem) {
 	location.href = `detail-view.html?id=${hvem._id}`;
 }
-
-// function truncateString(string, limit) {
-// 	if (string.length > limit) {
-// 		return string.substring(0, limit);
-// 	} else {
-// 		return string;
-// 	}
-// }

@@ -78,6 +78,7 @@ function vis(json) {
 			klon.querySelector(
 				".country"
 			).textContent = `Land: ${el.oprindelsesregion}`;
+			klon.querySelector(".pris-tag").textContent = `${el.pris} kr.`;
 			klon
 				.querySelector(".ret")
 				.addEventListener("click", () => visDetaljer(el));

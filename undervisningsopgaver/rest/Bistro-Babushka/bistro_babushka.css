@@ -122,6 +122,10 @@ button.active {
 }
 
 article {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
 	width: 100%;
 	min-height: 10rem;
 	padding: 0.5rem;
@@ -182,7 +186,19 @@ h3 {
 
 .details,
 .name_container {
-	padding-inline: 1.5rem;
 	width: 75%;
 	margin: 0 auto;
+}
+
+.pris {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.pris-tag {
+	background: rgba(214, 94, 90, 0.671);
+	padding: 0.4rem 1.1rem;
+	border-radius: 999px;
+	margin-bottom: 0.5rem;
 }

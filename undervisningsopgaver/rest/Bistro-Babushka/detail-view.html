@@ -103,7 +103,7 @@
 
 					<div class="small-details">
 						<p class="country"></p>
-						<div class="pris">80$</div>
+						<div class="pris">-</div>
 					</div>
 				</div>
 			</article>
@@ -155,6 +155,7 @@
 				ret.querySelector(
 					".country"
 				).textContent = `Land: ${retter.oprindelsesregion}`;
+				ret.querySelector(".pris").textContent = `${retter.pris} kr.`;
 				document.querySelector("button").addEventListener("click", () => {
 					history.back();
 				});

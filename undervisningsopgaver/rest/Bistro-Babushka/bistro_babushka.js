@@ -22,8 +22,10 @@ const btns = document.querySelectorAll("button");
 //Globale Variabler
 let retter;
 let filter = "alle";
+let selectOpt = "alfabetisk";
 
 const liste = document.querySelector("#liste");
+const sortSelect = document.querySelector("#sort");
 let skeleton = document.querySelector(".skeleton-ret");
 for (i = 0; i < 10; i++) {
 	liste.append(skeleton.cloneNode(true));
@@ -37,6 +39,7 @@ function start() {
 	btns.forEach((btn) => {
 		btn.addEventListener("click", filtrerRetter);
 	});
+	sortSelect.addEventListener("change", sorter);
 }
 
 // Filtrering
@@ -52,10 +55,25 @@ function filtrerRetter() {
 	vis(retter);
 }
 
+function sorter() {
+	if (sortSelect.value == "alfabetisk") {
+		retter.sort((a, b) => (a.navn > b.navn ? 1 : -1));
+		vis(retter);
+	} else {
+		retter.sort((a, b) => (a.pris > b.pris ? 1 : -1));
+		vis(retter);
+	}
+}
+
 // Rest API Call
 async function loadJSON() {
 	const JSONData = await fetch(db, settings);
+
 	retter = await JSONData.json();
+	console.log(retter[0].navn);
+
+	// Sortering - a og b repræsenterer objecterne.
+	retter.sort((a, b) => (a.navn > b.navn ? 1 : -1));
 	vis(retter);
 }
 

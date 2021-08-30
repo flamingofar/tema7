@@ -98,6 +98,11 @@ header {
 	font-size: 2.5em;
 }
 
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
 button {
 	padding: 0.5rem 1rem;
 	border: none;

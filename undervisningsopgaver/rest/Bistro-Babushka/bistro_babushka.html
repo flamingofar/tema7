@@ -21,10 +21,20 @@
 			<div class="buttons_container">
 				<h2>Alle</h2>
 				<div class="buttons">
-					<button data-retter="alle" class="active">Alle</button>
-					<button data-retter="forretter">Forretter</button>
-					<button data-retter="hovedretter">Hovedretter</button>
-					<button data-retter="desserter">Desserter</button>
+					<div class="button">
+						<button data-retter="alle" class="active">Alle</button>
+						<button data-retter="forretter">Forretter</button>
+						<button data-retter="hovedretter">Hovedretter</button>
+						<button data-retter="desserter">Desserter</button>
+					</div>
+
+					<div class="select">
+						<label for="sort">Sortér efter:</label>
+						<select name="sort" id="sort">
+							<option value="alfabetisk" selected>Alfabetisk</option>
+							<option value="pris">Pris</option>
+						</select>
+					</div>
 				</div>
 			</div>
 

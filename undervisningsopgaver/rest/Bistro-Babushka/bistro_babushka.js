@@ -18,14 +18,14 @@ let settings = {
 
 // DOM Elementer
 const btns = document.querySelectorAll("button");
+const liste = document.querySelector("#liste");
+const sortSelect = document.querySelector("#sort");
 
 //Globale Variabler
 let retter;
 let filter = "alle";
 let selectOpt = "alfabetisk";
 
-const liste = document.querySelector("#liste");
-const sortSelect = document.querySelector("#sort");
 let skeleton = document.querySelector(".skeleton-ret");
 for (i = 0; i < 10; i++) {
 	liste.append(skeleton.cloneNode(true));
@@ -74,6 +74,7 @@ async function loadJSON() {
 
 	// Sortering - a og b repræsenterer objecterne.
 	retter.sort((a, b) => (a.navn > b.navn ? 1 : -1));
+	console.log(retter);
 	vis(retter);
 }
 
@@ -97,6 +98,37 @@ function vis(json) {
 				".country"
 			).textContent = `Land: ${el.oprindelsesregion}`;
 			klon.querySelector(".pris-tag").textContent = `${el.pris} kr.`;
+			// if ((el.kategori = "forretter")) {
+			// 	klon.querySelector(".kategori-tag").textContent = `${el.kategori} kr.`;
+			// 	klon.querySelector(".kategori-tag").classList.add("forret");
+			// }
+
+			switch (el.kategori) {
+				case "forretter":
+					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;
+					klon.querySelector(".kategori-tag").classList.add("forret");
+					break;
+				case "hovedretter":
+					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;
+					klon.querySelector(".kategori-tag").classList.add("hovedret");
+					break;
+				case "desserter":
+					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;
+					klon.querySelector(".kategori-tag").classList.add("dessert");
+					break;
+				case "sideorders":
+					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;
+					klon.querySelector(".kategori-tag").classList.add("sideorder");
+					break;
+				case "drikkevarer":
+					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;
+					klon.querySelector(".kategori-tag").classList.add("drikkevare");
+					break;
+
+				default:
+					break;
+			}
+
 			klon
 				.querySelector(".ret")
 				.addEventListener("click", () => visDetaljer(el));

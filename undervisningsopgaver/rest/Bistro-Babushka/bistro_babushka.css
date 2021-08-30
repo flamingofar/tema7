@@ -194,15 +194,32 @@ h3 {
 	margin: 0 auto;
 }
 
-.pris {
+.tags {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-evenly;
 	align-items: center;
 }
 
-.pris-tag {
+.pris-tag,
+.kategori-tag {
 	background: rgba(214, 94, 90, 0.671);
 	padding: 0.4rem 1.1rem;
 	border-radius: 999px;
 	margin-bottom: 0.5rem;
+}
+
+.forret {
+	background: rgba(90, 214, 90, 0.671);
+}
+.hovedret {
+	background: rgba(212, 214, 90, 0.671);
+}
+.dessert {
+	background: rgba(214, 140, 90, 0.671);
+}
+.sideorder {
+	background: rgba(164, 90, 214, 0.671);
+}
+.drikkevare {
+	background: rgba(90, 206, 214, 0.671);
 }

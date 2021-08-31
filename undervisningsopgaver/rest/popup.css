@@ -79,7 +79,9 @@ input[type="checkbox"].check:checked::before {
 }
 
 /*------ Popup Styling ------*/
+
 #popup {
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -88,12 +90,43 @@ input[type="checkbox"].check:checked::before {
 	background: rgba(0, 0, 0, 0.7);
 }
 #popup article {
+	position: relative;
 	width: 80vw;
 	background: #fff;
 	margin: 4rem auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	border-radius: 5px;
 	padding: 0.8rem;
+}
+
+.luk {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	width: 2.5rem;
+	height: 2.5rem;
+	background: rgb(124, 124, 124);
+}
+
+.luk::before,
+.luk::after {
+	content: "";
+	position: absolute;
+	top: 1.2rem;
+	left: 0.25rem;
+	width: 2rem;
+	height: 0.15rem;
+
+	border-radius: 5px;
+	background: rgb(214, 214, 214);
+
+	transform: rotate(45deg);
+}
+
+.luk::after {
+	transform: rotate(-45deg);
 }

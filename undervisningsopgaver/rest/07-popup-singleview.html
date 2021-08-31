@@ -1,0 +1,152 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>test</title>
+
+		<link rel="shortcut icon" href="data:image/x-icon," type="image/x-icon" />
+		<link rel="stylesheet" href="popup.css" />
+	</head>
+
+	<body>
+		<h1>Alle</h1>
+		<div class="buttons">
+			<div class="box">
+				<h2>Troende:</h2>
+				<input class="check check_1" data-troende="troende" type="checkbox" />
+			</div>
+			<div class="box">
+				<h2>Ikke Troende:</h2>
+				<input
+					class="check check_2"
+					data-troende="ikkeTroende"
+					type="checkbox"
+				/>
+			</div>
+			<div class="box">
+				<h2>Tvivler:</h2>
+				<input class="check check_3" data-troende="tvivler" type="checkbox" />
+			</div>
+		</div>
+
+		<section id="liste"></section>
+
+		<template>
+			<article class="person">
+				<h2 class="navn"></h2>
+				<p class="køn"></p>
+				<img src="" alt="" class="profil-billede" />
+			</article>
+		</template>
+
+		<section id="popup">
+			<div class="luk"></div>
+			<article>
+				<h2></h2>
+				<img src="#" alt="" />
+				<h3>Titel:<span class="titel"></span></h3>
+				<p>Email:<span class="email"></span></p>
+				<p>Fødselsdag:<span class="fdag"></span></p>
+				<p>Hobby:<span class="hobby"></span></p>
+				<p>Troende:<span class="tro"></span></p>
+			</article>
+		</section>
+
+		<script>
+			const header = document.querySelector("header h1");
+			const medieurl = "./faces/";
+			const myHeaders = {
+				"x-apikey": "600fe9211346a1524ff12e31",
+			};
+			document.addEventListener("DOMContentLoaded", start);
+
+			const h1 = document.querySelector("h1");
+			const btns = document.querySelectorAll("button");
+			const btn1 = document.querySelector(".check_1");
+			const btn2 = document.querySelector(".check_2");
+			const btn3 = document.querySelector(".check_3");
+
+			const checkBox = document.querySelectorAll('input[type="checkbox"]');
+
+			btns.forEach((btn) => {
+				btn.addEventListener("click", filtrerPersoner);
+			});
+
+			let personer;
+			let count = 0;
+
+			let troende = true;
+			let ikkeTroende = false;
+			let tvivler = false;
+
+			let troendeFilter;
+			let ikkeTroendeFilter;
+			let tvivlerFilter;
+
+			btn1.checked = troende;
+			btn2.checked = ikkeTroende;
+			btn3.checked = tvivler;
+
+			// første funktion der kaldes efter DOM er loaded
+			function start() {
+				loadJSON();
+			}
+
+			async function loadJSON() {
+				const JSONData = await fetch(
+					"https://persongalleri-5d3e.restdb.io/rest/persongalleri",
+					{
+						headers: myHeaders,
+					}
+				);
+				personer = await JSONData.json();
+				visPersoner();
+			}
+
+			//funktion der viser personer i liste view
+			function visPersoner() {
+				checkBox.forEach((el) => {
+					el.addEventListener("click", checkBoxHandler);
+				});
+				const dest = document.querySelector("#liste"); // container til articles med en person
+				const skabelon = document.querySelector("template").content; // select indhold af html skabelon (article)
+
+				dest.textContent = "";
+
+				troende = btn1.checked;
+				ikkeTroende = btn2.checked;
+				tvivler = btn3.checked;
+
+				personer.forEach((person) => {
+					count++;
+					troendeFilter = person.troende;
+					ikkeTroendeFilter = person.troende;
+					tvivlerFilter = person.troende;
+					// loop igennem json
+
+					if (
+						(troende == true && troendeFilter == "ja") ||
+						(ikkeTroende == true && ikkeTroendeFilter == "nej") ||
+						(tvivler == true && tvivlerFilter == "tvivler")
+					) {
+						const klon = skabelon.cloneNode(true);
+						klon.querySelector(".navn").textContent =
+							person.fornavn + " " + person.efternavn;
+						klon.querySelector(".profil-billede").src =
+							medieurl + `img${count}.jpg`;
+						dest.appendChild(klon);
+					}
+				});
+				count = 0;
+			}
+
+			function checkBoxHandler() {
+				this.checked ? (this.checked = true) : (this.checked = false);
+				visPersoner();
+			}
+		</script>
+	</body>
+</html>

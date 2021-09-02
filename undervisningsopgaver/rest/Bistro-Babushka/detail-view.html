@@ -68,13 +68,22 @@
 				background-color: rgb(197, 223, 245);
 				padding: 0.25rem 1rem;
 
+				border-radius: 5px;
+				box-shadow: -1px 12px 18px -15px rgba(0, 0, 0, 0.5);
+				-webkit-box-shadow: -1px 12px 18px -15px rgba(0, 0, 0, 0.5);
+				-moz-box-shadow: -1px 12px 18px -15px rgba(0, 0, 0, 0.5);
+				transform: scale(0.96);
+
+				cursor: pointer;
+
+				transition: 250ms;
+			}
+
+			button:hover {
 				box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
 				-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
 				-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
-
-				border-radius: 5px;
-
-				cursor: pointer;
+				transform: scale(1);
 			}
 
 			button:active {
@@ -112,7 +121,7 @@
 		</header>
 		<main>
 			<h2>Ret</h2>
-			<article class="ret">
+			<article class="ret" style="cursor: initial">
 				<img src="#" alt="" />
 
 				<div class="details">

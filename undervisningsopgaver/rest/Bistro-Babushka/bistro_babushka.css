@@ -111,6 +111,8 @@ button {
 	border-radius: 999px;
 	margin-top: 0.5rem;
 
+	background: rgb(221, 221, 221);
+
 	cursor: pointer;
 }
 

@@ -107,6 +107,7 @@ function vis(json) {
 				case "forretter":
 					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;
 					klon.querySelector(".kategori-tag").classList.add("forret");
+
 					break;
 				case "hovedretter":
 					klon.querySelector(".kategori-tag").textContent = `${el.kategori} `;

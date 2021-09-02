@@ -64,12 +64,13 @@ body {
 	font-family: "Century Gothic", sans-serif;
 }
 h1 {
-	font-size: 5rem;
+	font-size: clamp(3rem, 2.1563rem + 3.75vw, 4.5rem);
 }
 header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 10vh;
 }
 main {
 	display: flex;
@@ -81,9 +82,10 @@ main {
 }
 
 header {
-	background: rgb(214, 94, 90);
+	background: rgb(228, 134, 131);
 	height: 20vh;
 	width: 100vw;
+	padding: 2rem 0;
 }
 
 .buttons_container {
@@ -107,6 +109,7 @@ button {
 	padding: 0.5rem 1rem;
 	border: none;
 	border-radius: 999px;
+	margin-top: 0.5rem;
 
 	cursor: pointer;
 }
@@ -135,11 +138,11 @@ article {
 	min-height: 10rem;
 	padding: 0.5rem;
 
-	border-radius: 4px;
+	border-radius: 8px;
 
-	box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: -1px 12px 18px -8px rgba(0, 0, 0, 0.5);
+	box-shadow: -1px 4px 10px 0px rgba(0, 0, 0, 0.22);
+	-webkit-box-shadow: -1px 4px 10px 0px rgba(0, 0, 0, 0.22);
+	-moz-box-shadow: -1px 4px 10px 0px rgba(0, 0, 0, 0.22);
 
 	cursor: pointer;
 
@@ -179,15 +182,6 @@ h3 {
 	display: inline-block;
 }
 
-.lname {
-	font-weight: lighter;
-	padding-bottom: 0.3rem;
-	border-bottom: solid 1px black;
-}
-
-.name {
-}
-
 .details,
 .name_container {
 	width: 75%;
@@ -198,28 +192,36 @@ h3 {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+
+	z-index: 10;
+}
+.kategori-tag:hover {
+	background: red;
 }
 
 .pris-tag,
 .kategori-tag {
-	background: rgba(214, 94, 90, 0.671);
+	background: #fff;
+	border: 2px solid black;
 	padding: 0.4rem 1.1rem;
 	border-radius: 999px;
 	margin-bottom: 0.5rem;
+
+	cursor: pointer;
 }
 
 .forret {
-	background: rgba(90, 214, 90, 0.671);
+	background: rgba(195, 240, 195, 0.671);
 }
 .hovedret {
-	background: rgba(212, 214, 90, 0.671);
+	background: rgba(235, 236, 183, 0.671);
 }
 .dessert {
-	background: rgba(214, 140, 90, 0.671);
+	background: rgba(238, 201, 177, 0.671);
 }
 .sideorder {
-	background: rgba(164, 90, 214, 0.671);
+	background: rgba(220, 185, 243, 0.671);
 }
 .drikkevare {
-	background: rgba(90, 206, 214, 0.671);
+	background: rgba(189, 235, 238, 0.671);
 }
